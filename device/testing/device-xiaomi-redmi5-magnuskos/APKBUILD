@@ -1,0 +1,42 @@
+# Reference: <https://postmarketos.org/devicepkg>
+# Based on device-qcom-msm8953
+
+pkgname="device-xiaomi-redmi5-magnuskos"
+pkver=0.1
+pkgrel=0
+
+url="https://magnuskos.ru"
+license="MIT"
+arch="aarch64"
+options="!check !archcheck"
+
+depends="
+    linux-magnuskos-qcom-msm8953
+    firmware-qcom-msm8953
+	lk2nd-msm8953
+	mkbootimg
+	msm-firmware-loader
+	postmarketos-base
+	qbootctl
+	soc-qcom-msm8953
+	soc-qcom-msm8953-modem
+	linux-firmware-mediatek
+	linux-firmware-ath9k_htc
+"
+
+makedepends="devicepkg-dev"
+
+source="deviceinfo
+        modules-initfs"
+
+build() {
+    devicepkg_build $startdir $pkgname
+}
+
+package() {
+    devicepkg_package $startdir $pkgname
+}
+
+sha512sums="
+
+"
