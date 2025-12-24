@@ -2,7 +2,7 @@
 # Based on device-qcom-msm8953
 
 pkgname=device-xiaomi-redmi5-magnuskos
-pkver=0.1
+pkver=0.2
 pkgrel=0
 
 url="https://magnuskos.ru"
@@ -27,7 +27,9 @@ depends="
 makedepends="devicepkg-dev"
 
 source="deviceinfo
-        modules-initfs"
+        modules-initfs
+        sshd_config
+        99-usb-net-gate.sh"
 
 build() {
     devicepkg_build $startdir $pkgname
@@ -35,6 +37,12 @@ build() {
 
 package() {
     devicepkg_package $startdir $pkgname
+
+    install -Dm644 "$srcdir"/sshd_config \
+		"$pkgdir"/etc/ssh/sshd_config
+
+	install -Dm755 "$srcdir"/99-usb-net-gate.sh \
+		"$pkgdir"/usr/lib/NetworkManager/dispatcher.d/99-usb-net-gate.sh
 }
 
 sha512sums="
