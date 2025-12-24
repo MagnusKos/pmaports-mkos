@@ -2,6 +2,7 @@
 # Based on device-qcom-msm8953
 
 pkgname=device-xiaomi-redmi5-magnuskos
+pkgdesc="Custom device package for Xiaomi Redmi 5 by MagnusKos."
 pkgver=0.2
 pkgrel=0
 
