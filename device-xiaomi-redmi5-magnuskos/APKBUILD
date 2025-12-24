@@ -3,7 +3,7 @@
 
 pkgname=device-xiaomi-redmi5-magnuskos
 pkgdesc="Custom device package for Xiaomi Redmi 5 by MagnusKos."
-pkgver=0.2
+pkgver=0.3
 pkgrel=0
 
 url="https://magnuskos.ru"
@@ -23,6 +23,10 @@ depends="
 	soc-qcom-msm8953-modem
 	linux-firmware-mediatek
 	linux-firmware-ath9k_htc
+"
+
+replaces="
+	openssh-server-common
 "
 
 makedepends="devicepkg-dev"
