@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Disable postmarketos-bootsplash services
+
+if [ -d /etc/systemd/system ]; then
+    # Mask the shutdown-splash service to prevent it from running
+    systemctl mask shutdown-splash 2>/dev/null || true
+
+    # Remove symlinks from target.wants directories
+    for target in halt reboot shutdown; do
+        rm -f /usr/lib/systemd/system/"$target".target.wants/shutdown-splash.service
+    done
+
+    if apk info -e postmarketos-bootsplash > /dev/null 2>&1; then
+        apk del -q --wait 30 postmarketos-bootsplash
+    fi
+
+    if apk info -e pbsplash > /dev/null 2>&1; then
+        apk del -q --wait 30 pbsplash
+    fi
+fi
+
+exit 0
+
