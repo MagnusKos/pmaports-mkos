@@ -3,7 +3,7 @@
 
 pkgname=device-xiaomi-redmi5-magnuskos
 pkgdesc="Custom device package for Xiaomi Redmi 5 by MagnusKos."
-pkgver=0.4
+pkgver=0.5
 pkgrel=0
 
 url="https://magnuskos.ru"
@@ -16,6 +16,7 @@ subpackages="$pkgname-systemd"
 depends="
     linux-magnuskos-qcom-msm8953
     firmware-qcom-msm8953
+    firmware-qcom-adreno-a530
 	lk2nd-msm8953
 	mkbootimg
 	msm-firmware-loader
@@ -41,6 +42,7 @@ makedepends="devicepkg-dev"
 source="deviceinfo
         modules-initfs
         sshd_config
+        mkinitfs_firmware
         99-usb-net-gate.sh"
 
 build() {
@@ -53,6 +55,9 @@ package() {
     install -Dm644 "$srcdir"/sshd_config \
 		"$pkgdir"/etc/ssh/sshd_config
 
+	install -Dm644 "$srcdir"/mkinitfs_firmware \
+		"$pkgdir"/etc/mkinitfs/files/firmware
+
 	install -Dm755 "$srcdir"/99-usb-net-gate.sh \
 		"$pkgdir"/usr/lib/NetworkManager/dispatcher.d/99-usb-net-gate.sh
 }
@@ -64,8 +69,9 @@ systemd() {
 }
 
 sha512sums="
-c3c53e33993092a0b3b623a7ac00f9c0b049cbb6ad41c4a847202af66d6bdf21a5e4ac21627c0d8ddf5eb5cbf2d9841b971851945fde3fb62d1139cecb8b1d6c  deviceinfo
+574a3612e9fbddf43ccab9570d3a236bbca92d4408a1b493074547460305ebb485b9b5f46543f4a51efc486b8e8df28021b711f0bb78f4554f26a9fdccd59eba  deviceinfo
 83d3a9519a659607b492b5a5a676eb46d589855b68751dfbad02f9d9dcdf84652c3a22f89357e2068b622ea91398f1590e7f26293330eb72558b9b55705fa434  modules-initfs
 e0445222f6c8aeaf5ed9a88f8975bb6d0f1bed23a88b2dea3bf05a22ad9475e69698fbd549a60a575f9770441a009fe5e581166cdeea30b4c876043e83611054  sshd_config
+9b87e2713b20f607fa5927f55ef9fa6fa4d2d6909d19ad01f3035adacd4678ef42551613eea165b16362ec6b5171881185910e9f05914abd5460f45277e53250  mkinitfs_firmware
 53687908cb244ae61df6dccdeb0e066126688c84dee253c0b22242c4adf9f22d7d2dfabeb754b1cb7084551e0d89705e07f2d787ef710e27dc122a681515daf6  99-usb-net-gate.sh
 "
