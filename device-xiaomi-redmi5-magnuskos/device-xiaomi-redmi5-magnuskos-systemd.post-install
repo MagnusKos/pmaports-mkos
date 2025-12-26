@@ -15,9 +15,9 @@ if [ -d /etc/systemd/system ]; then
         apk del -q --wait 30 postmarketos-bootsplash
     fi
 
-    if apk info -e pbsplash > /dev/null 2>&1; then
-        apk del -q --wait 30 pbsplash
-    fi
+    rm /usr/share/mkinitfs/files/30-postmarketos-bootsplash.files
+    rm /etc/local.d/99-shutdown-pbsplash.stop
+
 fi
 
 exit 0
