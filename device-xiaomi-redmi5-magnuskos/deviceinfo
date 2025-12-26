@@ -17,10 +17,11 @@ deviceinfo_external_storage="true"
 
 # Bootloader related
 deviceinfo_flash_method="fastboot"
-deviceinfo_kernel_cmdline="loglevel=4 PMOS_NOSPLASH console=tty0 fbcon=rotate:1"
+deviceinfo_generate_bootimg="true"
+deviceinfo_kernel_cmdline="PMOS_NOSPLASH splash loglevel=3 console=tty0 fbcon=rotate:1 fbcon=logo-count:1 fbcon=logo-pos:center"
 deviceinfo_partition_type="msdos"
 
 # extlinux.conf
-deviceinfo_dtb="qcom/apq8053-* qcom/msm8953-* qcom/sdm450-* qcom/sdm632-*"
+deviceinfo_dtb="qcom/sdm450-xiaomi-rosy"
 deviceinfo_generate_extlinux_config="true"
 deviceinfo_boot_filesystem="ext2"
