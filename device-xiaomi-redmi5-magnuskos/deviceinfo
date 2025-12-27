@@ -2,6 +2,9 @@
 # Please use double quotes only. You can source this file in shell
 # scripts.
 
+# boot.img analysis's cmdline:
+# deviceinfo_kernel_cmdline="console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_hsl_uart,0x78af000 buildvariant=user"
+
 deviceinfo_format_version="0"
 deviceinfo_name="Xiaomi Redmi 5"
 deviceinfo_manufacturer="Xiaomi"
@@ -18,10 +21,19 @@ deviceinfo_external_storage="true"
 # Bootloader related
 deviceinfo_flash_method="fastboot"
 deviceinfo_generate_bootimg="true"
-deviceinfo_kernel_cmdline="PMOS_NOSPLASH splash loglevel=3 console=tty0 fbcon=rotate:1 fbcon=logo-count:1 fbcon=logo-pos:center"
+deviceinfo_kernel_cmdline="msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 earlycon=msm_hsl_uart,0x78af000 PMOS_NOSPLASH splash loglevel=3 console=tty0 fbcon=rotate:1 fbcon=logo-count:1 fbcon=logo-pos:center"
 deviceinfo_partition_type="msdos"
 
 # extlinux.conf
 deviceinfo_dtb="qcom/sdm450-xiaomi-rosy"
 deviceinfo_generate_extlinux_config="true"
 deviceinfo_boot_filesystem="ext2"
+
+# Bootimg parameters
+deviceinfo_bootimg_qcdt="false"
+deviceinfo_flash_pagesize="2048"
+deviceinfo_flash_offset_base="0x80000000"
+deviceinfo_flash_offset_kernel="0x00008000"
+deviceinfo_flash_offset_ramdisk="0x01000000"
+deviceinfo_flash_offset_second="0x00f00000"
+deviceinfo_flash_offset_tags="0x00000100"
